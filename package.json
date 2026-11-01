@@ -1,0 +1,15 @@
+{
+  "name": "kicksly-ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "test": "node --test",
+  "test:coverage": "node --test --experimental-test-coverage",
+  "build": "node -e \"console.log('Kicksly build OK')\""
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
