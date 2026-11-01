@@ -1,0 +1,34 @@
+name: Kicksly CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["Kicksly CI Pipeline"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy-staging:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: kicksly-build
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to staging (automatic)
+        run: echo "Deploying kicksly-build.zip to Kicksly staging"
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production   # requires manual approval
+    steps:
+      - name: Deploy to production (after approval)
+        run: echo "Deploying approved build to Kicksly production"
