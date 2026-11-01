@@ -4,7 +4,7 @@
 
 
 function calculateCartTotal(price, quantity) {
-  return price + quantity; // Intentional defect
+  return price * quantity;
 }
 
 // REQSCW005, REQSCW014: subtotal of the whole cart
