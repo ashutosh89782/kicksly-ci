@@ -1,8 +1,10 @@
 // Kicksly - cart, coupon and comparison rules (see SRS 4.3, 4.8, 4.9)
 
 // REQSCW005: line total for one product
+
+
 function calculateCartTotal(price, quantity) {
-  return price * quantity;
+  return price + quantity; // Intentional defect
 }
 
 // REQSCW005, REQSCW014: subtotal of the whole cart
